@@ -22,12 +22,13 @@ class Content extends Component {
     this.focusInput();
   };
 
+  // Adjust scrolling
   componentDidUpdate = () => {
-    this.inputWrapper.scrollIntoView(false);
-  }
+    if (this.inputWrapper !== null) this.inputWrapper.scrollIntoView(false);
+  };
 
   focusInput = () => {
-    this.com.focus();
+    if (this.com !== null) this.com.focus();
   };
 
   render() {
@@ -46,7 +47,9 @@ class Content extends Component {
         className="terminal-container terminal-container-main"
         style={{
           ...backgroundColor,
-          ...(maximise ? { maxWidth: '100%', maxHeight: 'calc(100% - 30px)' } : {}),
+          ...(maximise
+            ? { maxWidth: '100%', maxHeight: 'calc(100% - 30px)' }
+            : {}),
         }}
         onClick={this.focusInput}
       >
@@ -54,7 +57,10 @@ class Content extends Component {
           <div className="terminal-content">
             <div className="terminal-input-area">
               {output}
-              <div className="terminal-input" ref={elm => (this.inputWrapper = elm)}>
+              <div
+                className="terminal-input"
+                ref={elm => (this.inputWrapper = elm)}
+              >
                 <span className="terminal-prompt" style={prompt}>{symbol}</span>
                 <input
                   className="terminal-main-input"

@@ -8,9 +8,6 @@ const App = () => (
   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
     <Terminal
       msg="Hello World. My name is Nitin Tulswani"
-      plugins={[
-        new PseudoFileSystem(),
-      ]}
       commands={{
         color: {
           method: (args) => {
@@ -32,10 +29,9 @@ const App = () => (
               runCommand(`edit-line ${text.slice(0, i + 1)}`);
             }, 100 * i);
           }
-        },
+        }
       }}
-      descriptions={{ color: 'option for color. For eg - color red', 'type-text': false }}
-      commandPassThrough={cmd => `-PassedThrough:${cmd}: command not found`}
+      descriptions={{ color: 'option for color. For eg - color red', 'type-text': 'Types a tex' }}
     />
   </div>
 );
